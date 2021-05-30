@@ -2,12 +2,54 @@
 <html>
 <head>
     <title>Mtpstudio Bad,Worse,Worst</title>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+<script src="util.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 <script>
-    ethereum.request({ method: 'eth_requestAccounts' });
-    alert(ethereum.selectedAddress)
+    if (typeof window.ethereum !== 'undefined') {
+        console.log('MetaMask is installed!');
+        auth()
+    }else{
+        alert("没安装metamask的人，鬼～u！")
+    }
 </script>
+<!--
+Address:
+Master 0xF629cB9dC70dfb7Ea9069a337FC033d1E5DE6065
+
+LAB 0x61a75d8cb15bef87c9c4c635d528c549456c3862
+-->
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">MtpStudio</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="#buy">购买商品</a></li>
+                <li><a href="avascript:void(0);" onclick="pay('0x8f35E72E64E4DEaaE8CD67d35276dEed87f83410',50)">捐助mtp</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div style="text-align: center">
+    <br>
+    <h1>M·T·P Shop</h1>
+    <br>
+    <a name="buy"></a>
+    <hr>
+</div>
 </body>
 </html>
