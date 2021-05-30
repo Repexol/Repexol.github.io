@@ -11,4 +11,8 @@ function pay(to,value){
         value: (value*1000000000000000000).toString(16), // Only required to send ether to the recipient from the initiating external account.
         chainId: '0xf79', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
     };
+    const txHash = ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [transactionParameters],
+    });
 }
