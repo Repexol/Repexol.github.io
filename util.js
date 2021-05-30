@@ -1,6 +1,9 @@
 function auth(){
     ethereum.request({ method: 'eth_requestAccounts' });
 }
+function auth(){
+    ethereum.request({ method: 'eth_requestAccounts' });
+}
 function pay(to,value){
     transactionParameters = {
         nonce: '0x00', // ignored by MetaMask
