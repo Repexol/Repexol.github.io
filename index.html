@@ -30,9 +30,7 @@
 Address:
 Master 0xF629cB9dC70dfb7Ea9069a337FC033d1E5DE6065
 
-ShopAwww 0x092419fe4c8516ed1c01bbdc0f62fd9773a8ce12
-ShopNew1 0x9d283db39e01db034961e2f3736e798268f270eb
-Shop 0xac0c72bbdba64cfadf21c275a3ddf32425773594
+Shop 0x0c208ef49846dc44c510499c731d2b62ebb0f9f5
 LAB 0x61a75d8cb15bef87c9c4c635d528c549456c3862
 -->
 <nav class="navbar navbar-default" role="navigation">
@@ -50,26 +48,49 @@ LAB 0x61a75d8cb15bef87c9c4c635d528c549456c3862
 <div style="text-align: center">
     <script>
         var web3 = new Web3(window.ethereum);
-        window.ethereum.enable();
+        auth();
         var select="";
-        var shop=web3.eth.contract(shopabi).at("0x092419fe4c8516ed1c01bbdc0f62fd9773a8ce12");
+        var shop=web3.eth.contract(shopabi).at("0x0c208ef49846dc44c510499c731d2b62ebb0f9f5");
         alert("welcome:"+getAddress())
     </script>
     <br>
     <h1>M·T·P Shop</h1><br>
-    商品名称（一字不差）：<input type="text" id="item"><br>
+    商品ID（一字不差）：<input type="text" id="item"><br>
     <button onclick="search()">搜索</button>
     <div id="itemMSG">
     </div>
+    附加信息<input type="text" id="data"><br>
+    <button onclick="buy()">购买</button>
     <script>
         function search(){
             select=document.getElementById("item").value;
-            shop.methods.buy().encodeABI();
+            shop.methods.getId(select).call({from:getAddress()},function (id) {
+                document.getElementById("itemMSG").innerHTML=id;
+                console.log(id);
+                select=id;
+            });
         }
-        function buy(){}
+        function buy(){
+            if(select===""){
+                alert("23333")
+            }else {
+                var abi=shop.methods.buy(select,document.getElementById("data").value).encodeABI();
+                __call("0x0c208ef49846dc44c510499c731d2b62ebb0f9f5",1000000000000000000,abi);
+            }
+        }
     </script>
     <br>
     <hr>
+    <h2>出售</h2>
+    名称<input type="text" id="title"><br>
+    价格<input type="text" id="price"><br>
+    <button onclick="sell()">出售</button>
+    <script>
+        function sell(){
+            var abi=shop.methods.sell(document.getElementById("title").value,parseInt(document.getElementById("price").value)).encodeABI();
+            __call("0x0c208ef49846dc44c510499c731d2b62ebb0f9f5",0,abi);
+        }
+    </script>
 </div>
 </body>
 </html>
