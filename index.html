@@ -50,7 +50,7 @@ LAB 0x61a75d8cb15bef87c9c4c635d528c549456c3862
         var web3 = new Web3(window.ethereum);
         auth();
         var select="";
-        var shop=web3.eth.contract(shopabi);
+        var shop=new web3.eth.Contract(shopabi);
         alert("welcome:"+getAddress())
     </script>
     <br>
