@@ -14,12 +14,13 @@
 
 </head>
 <body>
+<script src="shopapi.js"></script>
 <script src="util.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 <script>
     if (typeof window.ethereum !== 'undefined') {
         console.log('MetaMask is installed!');
-        auth()
+        //auth()
     }else{
         alert("没安装metamask的人，鬼～u！")
     }
@@ -28,6 +29,9 @@
 Address:
 Master 0xF629cB9dC70dfb7Ea9069a337FC033d1E5DE6065
 
+ShopAwww 0x092419fe4c8516ed1c01bbdc0f62fd9773a8ce12
+ShopNew1 0x9d283db39e01db034961e2f3736e798268f270eb
+Shop 0xac0c72bbdba64cfadf21c275a3ddf32425773594
 LAB 0x61a75d8cb15bef87c9c4c635d528c549456c3862
 -->
 <nav class="navbar navbar-default" role="navigation">
@@ -37,7 +41,6 @@ LAB 0x61a75d8cb15bef87c9c4c635d528c549456c3862
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li><a href="#buy">购买商品</a></li>
                 <li><a href="avascript:void(0);" onclick="pay('0x8f35E72E64E4DEaaE8CD67d35276dEed87f83410',50)">捐助mtp</a></li>
             </ul>
         </div>
@@ -45,12 +48,25 @@ LAB 0x61a75d8cb15bef87c9c4c635d528c549456c3862
 </nav>
 <div style="text-align: center">
     <script>
+        var web3 = new Web3(window.ethereum);
+        window.ethereum.enable();
+        var select="";
+        var shop=web3.eth.contract(shopabi).at("0x092419fe4c8516ed1c01bbdc0f62fd9773a8ce12");
         alert("welcome:"+getAddress())
     </script>
     <br>
-    <h1>M·T·P Shop(WIP)</h1>
+    <h1>M·T·P Shop</h1><br>
+    商品名称（一字不差）：<input type="text" id="item"><br>
+    <button onclick="search()">搜索</button>
+    <div id="itemMSG">
+    </div>
+    <script>
+        function search(){
+            shop.methods.buy
+        }
+        function buy(){}
+    </script>
     <br>
-    <a name="buy"></a>
     <hr>
 </div>
 </body>
